@@ -8,8 +8,8 @@ import { SaleDirective } from './directives/sale/sale.directive';
 import { KdvPipe } from './pipes/kdv/kdv.pipe';
 import { FormsModule } from '@angular/forms';
 import { ProductPipe } from './pipes/filter/product.pipe';
-import { CoreModule } from 'src/app/core/core.module';
 import { ClickProductCardDirective } from './directives/click-product-card/click-product-card.directive';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({

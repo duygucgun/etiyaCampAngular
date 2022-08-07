@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { AuthModule } from './auth/auth.module';
+import { StorageModule } from './storage/storage.module';
 import { IfNotDirective } from './directive/ifNot/if-not.directive';
 
 
@@ -13,7 +14,8 @@ import { IfNotDirective } from './directive/ifNot/if-not.directive';
   imports: [
     CommonModule,
     CoreRoutingModule,
-    AuthModule
+    AuthModule,
+    StorageModule
   ],
   exports:[
     IfNotDirective,

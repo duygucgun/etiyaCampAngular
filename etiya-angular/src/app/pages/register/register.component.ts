@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Customer } from 'src/app/features/customers/models/customer';
 import { CustomersService } from 'src/app/features/customers/services/customers.service';
 
@@ -10,45 +10,49 @@ import { CustomersService } from 'src/app/features/customers/services/customers.
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  //companyName = new FormControl('', Validators.required);
-  constructor(private customersService: CustomersService,
-    private formBuilder: FormBuilder) { }
+
+  //companyName = new FormControl('',Validators.required);
+
+  constructor(private formBuilder:FormBuilder, private customerServices:CustomersService) { }
 
   ngOnInit(): void {
     this.createRegisterForm();
-
   }
 
-  createRegisterForm(): void {
+  createRegisterForm(): void{
     this.registerForm = this.formBuilder.group({
-      companyName: ['', [Validators.required, Validators.minLength(2)]],
-      contactName: ['', Validators.required, Validators.minLength(3)],
-      contactTitle: ['', Validators.required, Validators.minLength(2)],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      region: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      country: ['', Validators.required],
-      phone: ['', Validators.required],
-      customerKey: ['', Validators.required],
+      companyName: [
+        '', //default
+        [Validators.required,Validators.minLength(2)] //doğrulama 
+      ],
+      contactName: ['',[Validators.required,Validators.minLength(2)]],
+      contactTitle: ['',[Validators.required,Validators.minLength(2)]],
+      street: ['',Validators.required],
+      city: ['',Validators.required],
+      region: ['',Validators.required],
+      postalCode: ['',Validators.required],
+      country: ['',Validators.required],
+      phone: ['',Validators.required],
+      customerKey: ['',[Validators.required,Validators.minLength(2)]],
 
-    });
-    //  new FormGroup({
-    //    companyName: this.companyName,
-    //  })
+    })
+    
+    // this.registerForm = new FormGroup({
+    //   companyName : this.companyName
+    // })
   }
 
-  register() {
+  register(){
     if (this.registerForm.invalid) {
-      console.warn("Gerekli alanları Doldurunuz.");
+      console.warn("Gerekli alanları doldurunuz")
       return;
     }
 
-    const customer: Customer = {
+    const customer:Customer = {
       ...this.registerForm.value,
-      city: this.registerForm.value.city.toUpperCase()
     }
-    this.customersService.add(this.registerForm.value).subscribe(response => {
+
+    this.customerServices.add(customer).subscribe(response =>{
       console.info(response)
     })
   }
