@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CartRoutingModule } from './cart-routing.module';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
+import { CartSummaryService } from './services/cart-summary.service';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
     CommonModule,
     CartRoutingModule
   ],
-  exports:[CartSummaryComponent]
+  exports:[CartSummaryComponent],
+  providers:[CartSummaryService]
 })
 export class CartModule { }

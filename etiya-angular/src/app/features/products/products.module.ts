@@ -6,10 +6,14 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { SaleDirective } from './directives/sale/sale.directive';
 import { KdvPipe } from './pipes/kdv/kdv.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductPipe } from './pipes/filter/product.pipe';
 import { ClickProductCardDirective } from './directives/click-product-card/click-product-card.directive';
 import { CoreModule } from 'src/app/core/core.module';
+import { CartModule } from '../cart/cart.module';
+import { ProductFormComponent } from './pages/product-form/product-form.component';
+import { AddProductComponent } from './pages/add-product/add-product.component';
+import { ProductDashboardComponent } from './pages/product-dashboard/product-dashboard.component';
 
 
 @NgModule({
@@ -19,14 +23,18 @@ import { CoreModule } from 'src/app/core/core.module';
     SaleDirective , 
     KdvPipe, 
     ProductPipe,
-    
     ClickProductCardDirective,
+    ProductFormComponent,
+    AddProductComponent,
+    ProductDashboardComponent
   ],
   imports: [
     CommonModule,
     ProductsRoutingModule,
     FormsModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule,
+    CartModule
   ],
   exports:[
     ProductListComponent, 
